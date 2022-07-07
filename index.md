@@ -5,6 +5,10 @@ This is where all practice for R can be viewed.
 - Minimum Wage Data
 - and more
 
+###New Section
+
+R Stuff
+
 [Link](url) and ![Image](src)
 ```
 
