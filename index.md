@@ -5,11 +5,10 @@ This is where all practice for R can be viewed.
 - Minimum Wage Data
 - and more
 
-### New Section
+### Minimum Wage Project
 
-R Stuff
+[Minimum Wage Code](https://github.com/raclan/R_Practice/blob/gh-pages/Minimum%20Wage.Rmd)
 
-[Link](url) and ![Image](src)
 ```
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
