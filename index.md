@@ -1,8 +1,8 @@
-## Welcome to GitHub Pages
+## Welcome
 
-You can use the [editor on GitHub](https://github.com/raclan/R_min_wage/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is where all practice for R can be viewed.
+- COVID Data
+- Minimum Wage Data
 
 ### Markdown
 
