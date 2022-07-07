@@ -1,0 +1,45 @@
+---
+title: "Practice"
+author: "Ryan Aclan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(maps)
+library(viridis)
+```
+
+```{r data}
+setwd("C:/Users/ryanr/Documents/School Stuff/CAB/R Practice/Practice")
+getwd()
+
+min_wage <- read_csv("Minimum Wage Data.csv") %>%
+  filter(State != "District of Columbia", State != "Guam", State != "Puerto Rico", State != "U.S. Virgin Islands") %>%
+  mutate(State = tolower(State)) %>%
+  rename(region = State)
+min_wage_2020 <- min_wage %>%
+  filter(Year == 2020)
+```
+
+```{r map_prep, echo=TRUE}
+us_map <- map_data("state")
+
+min_wage_2020_map <- merge(us_map, min_wage_2020, by = "region")
+```
+
+```{r plot_map, out.height = "70%", out.width = "70%", echo = TRUE, eval = FALSE}
+ggplot(data = min_wage_2020_map, aes(x = long, y = lat)) + 
+  geom_map(map = us_map, aes(fill = Effective.Minimum.Wage, map_id = region)) +
+  scale_fill_viridis(option = "C") +
+  theme_void()
+```
+
+```{r plot, echo=TRUE}
+ggplot(data = min_wage) + 
+  geom_smooth(mapping = aes(x = Year, y = State.Minimum.Wage.2020.Dollars))
+```
