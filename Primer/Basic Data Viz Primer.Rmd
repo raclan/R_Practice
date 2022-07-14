@@ -1,0 +1,57 @@
+---
+title: "Basic Viz Primer"
+author: "Ryan Aclan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r mpg}
+mpg
+# displ: car's engine size in liters
+# hwy: car's fuel efficiency on the highway, in miles per gallon
+```
+```{r plot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+# Start the graph with ggplot()
+# Add elements to the graph with a geom_ function
+# Select variables with the mapping = aes() argument
+ggplot(data = mpg) + 
+  geom_boxplot(mapping = aes(x = class, y = hwy))
+# '+' needs to come at the end of line, not beginning
+# ?function_name
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+# color, size, alpha, shape
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = displ < 5))
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue", shape = 3, alpha = 0.5)
+# to change graph aesthetic, put outside of parentheses; to tie it to variable, put inside
+# ?geom_line
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+# ?geom_smooth
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
