@@ -8,4 +8,5 @@ This is where all practice for R can be viewed.
 ### Minimum Wage Project
 
 [Minimum Wage Code](https://github.com/raclan/R_Practice/blob/gh-pages/Minimum%20Wage.Rmd)
-[test](/R_Practice/Minimum Wage/min_wage_graph.png)
+
+![test](/R_Practice/docs/assets/min_wage_map.gif)
