@@ -13,18 +13,18 @@ library(ggplot2)
 library(maps)
 library(viridis)
 
-install.packages("gganimate")
+# install.packages("gganimate")
 library(gganimate)
-install.packages("transformr")
+# install.packages("transformr")
 library(transformr)
-install.packages("gifski")
+# install.packages("gifski")
 library(gifski)
-install.packages("gapminder")
+# install.packages("gapminder")
 library(gapminder)
 ```
 
 ```{r data}
-setwd("C:/Users/ryanr/Documents/School Stuff/CAB/R Practice/Practice")
+setwd("C:/Users/ryanr/Documents/School Stuff/CAB/R Practice/Minimum Wage")
 getwd()
 
 min_wage <- read_csv("Minimum Wage Data.csv") %>%
@@ -43,21 +43,21 @@ min_wage_2020_map <- merge(us_map, min_wage_2020, by = "region")
 ```
 
 ```{r test}
-myPlot <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
-  geom_point(alpha = 0.7, show.legend = FALSE) +
-  scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) +
-  scale_x_log10() +
-  # Here comes the gganimate specific bits
-  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
-  transition_time(year) +
-  ease_aes('linear')
-
-animate(myPlot, duration = 5, fps = 20, width = 200, height = 200, renderer = gifski_renderer())
-anim_save("output.gif")
+# myPlot <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+#   geom_point(alpha = 0.7, show.legend = FALSE) +
+#   scale_colour_manual(values = country_colors) +
+#   scale_size(range = c(2, 12)) +
+#   scale_x_log10() +
+#   # Here comes the gganimate specific bits
+#   labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+#   transition_time(year) +
+#   ease_aes('linear')
+# 
+# animate(myPlot, duration = 5, fps = 20, width = 200, height = 200, renderer = gifski_renderer())
+# anim_save("output.gif")
 ```
 
-```{r plot_map, out.height = "70%", out.width = "70%", echo = TRUE, eval = FALSE}
+```{r plot_map, out.height = "70%", out.width = "70%", echo = TRUE}
 g <- ggplot(data = min_wage_map, aes(x = long, y = lat)) +
   geom_map(map = us_map, aes(fill = Effective.Minimum.Wage, map_id = region)) +
   scale_fill_viridis(option = "C") +
@@ -66,11 +66,11 @@ g <- ggplot(data = min_wage_map, aes(x = long, y = lat)) +
   transition_time(Year) +
   ease_aes('linear')
 
-animate(g, duration = 10, fps = 26, renderer = gifski_renderer())
+animate(g, duration = 10, height = 400, width = 800, fps = 26, end_pause = 130, renderer = gifski_renderer())
 anim_save("min_wage_map.gif")
 ```
 
-```{r plot_map_2020, out.height = "70%", out.width = "70%", echo = TRUE, eval = FALSE}
+```{r plot_map_2020, out.height = "70%", out.width = "70%", echo = TRUE}
 ggplot(data = min_wage_2020_map, aes(x = long, y = lat)) + 
   geom_map(map = us_map, aes(fill = Effective.Minimum.Wage, map_id = region)) +
   scale_fill_viridis(option = "C") +
@@ -80,6 +80,7 @@ ggplot(data = min_wage_2020_map, aes(x = long, y = lat)) +
 ```{r plot, echo=TRUE}
 ggplot(data = min_wage) + 
   geom_smooth(mapping = aes(x = Year, y = State.Minimum.Wage.2020.Dollars)) +
-  labs(y = "State Minimum Wage in 2020 (dollars)") +
+  labs(y = "State Minimum Wage in 2020 (US dollars)") +
   theme_classic()
+ggsave("min_wage_graph.png")
 ```
