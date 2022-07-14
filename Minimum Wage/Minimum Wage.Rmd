@@ -30,7 +30,8 @@ getwd()
 min_wage <- read_csv("Minimum Wage Data.csv") %>%
   filter(State != "District of Columbia", State != "Guam", State != "Puerto Rico", State != "U.S. Virgin Islands") %>%
   mutate(State = tolower(State)) %>%
-  rename(region = State)
+  rename(region = State) %>%
+  mutate(Year = as.numeric(Year))
 min_wage_2020 <- min_wage %>%
   filter(Year == 2020)
 ```
@@ -62,11 +63,11 @@ g <- ggplot(data = min_wage_map, aes(x = long, y = lat)) +
   geom_map(map = us_map, aes(fill = Effective.Minimum.Wage, map_id = region)) +
   scale_fill_viridis(option = "C") +
   theme_classic() +
-  labs(title = 'Year: {frame_time}') +
+  labs(title = 'Year: {as.integer(frame_time)}') +
   transition_time(Year) +
   ease_aes('linear')
 
-animate(g, duration = 10, height = 400, width = 800, fps = 26, end_pause = 130, renderer = gifski_renderer())
+animate(g, duration = 10, height = 400, width = 800, fps = 26.5, end_pause = 130, renderer = gifski_renderer())
 anim_save("min_wage_map.gif")
 ```
 
