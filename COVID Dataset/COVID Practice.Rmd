@@ -11,7 +11,7 @@ library(readr)
 library(tidyverse)
 library(ggplot2)
 library(maps)
-install.packages("plyr")
+# install.packages("plyr")
 
 library(viridis)
 library(zipcodeR)
@@ -42,6 +42,7 @@ ggplot(data = today_covid_map_all, aes(x = long, y = lat)) +
   geom_map(map = us_map, aes(fill = people_fully_vaccinated_per_hundred, map_id = region)) +
   scale_fill_viridis(name = "fully vaccinated per 100", option = "D", direction = -1) +
   theme_void()
+ggsave("covid_map.png", width = 14, height = 7)
   
   # labs(title = "State-by-state Vaccination Across the US", subtitle = "Data from the Centers for Disease Control (June 5th, 2022)") +
   #   theme(text = element_text(size = 10), legend.title = element_text(size = 9)) +
